@@ -1,0 +1,1 @@
+export const getEtherscanUrl = transactionHash => `https://etherscan.io/tx/${transactionHash}`;
