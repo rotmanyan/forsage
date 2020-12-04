@@ -1,4 +1,0 @@
-export const PURCHASE_MODE = {
-  MANUAL: 'MANUAL',
-  METAMASK: 'METAMASK',
-}
