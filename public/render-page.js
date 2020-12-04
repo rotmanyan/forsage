@@ -1,12 +1,12 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("/Users/yurii/forsage_front/node_modules/@reach/router/index.js"), require("/Users/yurii/forsage_front/node_modules/lodash/merge.js"), require("react"), require("react-dom/server"), require("react-helmet"));
+		module.exports = factory(require("/Users/yurii/forsage_front_own/node_modules/@reach/router/index.js"), require("/Users/yurii/forsage_front_own/node_modules/lodash/merge.js"), require("react"), require("react-dom/server"), require("react-helmet"));
 	else if(typeof define === 'function' && define.amd)
-		define("lib", ["/Users/yurii/forsage_front/node_modules/@reach/router/index.js", "/Users/yurii/forsage_front/node_modules/lodash/merge.js", "react", "react-dom/server", "react-helmet"], factory);
+		define("lib", ["/Users/yurii/forsage_front_own/node_modules/@reach/router/index.js", "/Users/yurii/forsage_front_own/node_modules/lodash/merge.js", "react", "react-dom/server", "react-helmet"], factory);
 	else if(typeof exports === 'object')
-		exports["lib"] = factory(require("/Users/yurii/forsage_front/node_modules/@reach/router/index.js"), require("/Users/yurii/forsage_front/node_modules/lodash/merge.js"), require("react"), require("react-dom/server"), require("react-helmet"));
+		exports["lib"] = factory(require("/Users/yurii/forsage_front_own/node_modules/@reach/router/index.js"), require("/Users/yurii/forsage_front_own/node_modules/lodash/merge.js"), require("react"), require("react-dom/server"), require("react-helmet"));
 	else
-		root["lib"] = factory(root["/Users/yurii/forsage_front/node_modules/@reach/router/index.js"], root["/Users/yurii/forsage_front/node_modules/lodash/merge.js"], root["react"], root["react-dom/server"], root["react-helmet"]);
+		root["lib"] = factory(root["/Users/yurii/forsage_front_own/node_modules/@reach/router/index.js"], root["/Users/yurii/forsage_front_own/node_modules/lodash/merge.js"], root["react"], root["react-dom/server"], root["react-helmet"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE__reach_router__, __WEBPACK_EXTERNAL_MODULE_lodash_merge__, __WEBPACK_EXTERNAL_MODULE_react__, __WEBPACK_EXTERNAL_MODULE_react_dom_server__, __WEBPACK_EXTERNAL_MODULE_react_helmet__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -118,7 +118,7 @@ var plugins = [{
   plugin: __webpack_require__(/*! ./node_modules/gatsby-plugin-intl/gatsby-ssr */ "./node_modules/gatsby-plugin-intl/gatsby-ssr.js"),
   options: {
     "plugins": [],
-    "path": "/Users/yurii/forsage_front/src/intl",
+    "path": "/Users/yurii/forsage_front_own/src/intl",
     "languages": ["en", "zh"],
     "defaultLanguage": "zh",
     "redirect": false
@@ -40372,9 +40372,9 @@ module.exports = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjgiIGhlaWdodD0iMjgi
 /***/ }),
 
 /***/ "@reach/router":
-/*!*********************************************************************************!*\
-  !*** external "/Users/yurii/forsage_front/node_modules/@reach/router/index.js" ***!
-  \*********************************************************************************/
+/*!*************************************************************************************!*\
+  !*** external "/Users/yurii/forsage_front_own/node_modules/@reach/router/index.js" ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -40383,9 +40383,9 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__reach_router__;
 /***/ }),
 
 /***/ "lodash/merge":
-/*!**************************************************************************!*\
-  !*** external "/Users/yurii/forsage_front/node_modules/lodash/merge.js" ***!
-  \**************************************************************************/
+/*!******************************************************************************!*\
+  !*** external "/Users/yurii/forsage_front_own/node_modules/lodash/merge.js" ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
