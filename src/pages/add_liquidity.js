@@ -37,7 +37,7 @@ const setAmountAction = amount => ({ type: ACTIONS.SET_AMOUNT, payload: amount }
 const setUserCurrencyAction = currency => ({ type: ACTIONS.SET_USER_CURRENCY, payload: currency });
 
 const initialState = {
-  step: STEPS.INFO,
+  step: STEPS.AMOUNT,
   amount: 0,
   userCurrency: null,
 };
@@ -94,7 +94,7 @@ const Liquidity = () => {
     }}>
       <Container>
         <ContentWrapper alignItems='center' column>
-          <Progress dots={[...Object.values(METAMASK_PROGRESS)]} titles={METAMASK_PROGRESS_TITLES} step={METAMASK_PROGRESS.AMOUNT} />
+        <Progress dots={[...Object.values(METAMASK_PROGRESS)]} titles={METAMASK_PROGRESS_TITLES} step={METAMASK_PROGRESS.AMOUNT} />
           <LiquidityContext.Provider value={{
             nextHandler,
             setAmount,
@@ -118,5 +118,4 @@ const Container = styled.div`
 
 export default withWallet(
   Liquidity,
-  { only: [ PURCHASE_MODE.METAMASK ] }
 );

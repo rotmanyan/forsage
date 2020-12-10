@@ -6,7 +6,7 @@ import ArrowRightSrc from '../../images/arrow-right2.svg';
 export const AddLiquidityButton = (props) => {
   const clickHandler = () => navigate('/add_liquidity');
 
-  return <Button onClick={clickHandler} {...props} disabled>
+  return <Button onClick={clickHandler} {...props} >
     <FormattedMessage id='addLiquidity' />
   </Button>;
 }
@@ -23,7 +23,7 @@ export const AddLiquidityButton = (props) => {
 export const LiquidityMiningButton = (props) => {
   const clickHandler = () => navigate('/add_liquidity');
 
-  return <Button onClick={clickHandler} {...props} disabled>
+  return <Button onClick={clickHandler} {...props} >
     <FormattedMessage id='liquidityMining' />
   </Button>
 }

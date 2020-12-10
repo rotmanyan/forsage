@@ -22,9 +22,7 @@ const MainBlock = () => {
         return () => clearInterval(interval);
     }, []);
 
-    const ignoreLinkClick = e => {
-        e.preventDefault();
-    }
+    const ignoreLinkClick = () => navigate('/add_liquidity');
 
     return (
         <Container>
@@ -42,7 +40,7 @@ const MainBlock = () => {
                     <TimeWrapper><img src={TimerIcon} alt='' />{formatDate(timeLeft)}</TimeWrapper>
                 }
                 <ButtonWrapper>
-                    <Button onClick={ignoreLinkClick} to='/add_liquidity' $disabled>
+                    <Button onClick={ignoreLinkClick} to='/add_liquidity' >
                         <FormattedMessage id='liquidityMining' />
                     </Button>
                     <Button to='/buy' color='success'>

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useIntl, FormattedMessage } from 'gatsby-plugin-intl';
 
 import useCurrencies from '../../../hooks/useCurrencies';
 import { LiquidityContext } from '../../../contexts/liquidityContext';
@@ -7,7 +8,10 @@ import { LiquidityContext } from '../../../contexts/liquidityContext';
 import Form from '../../Form/form';
 import ExchangeInput from '../../ExchangeInput/exchangeInput';
 import ExchangeButton from '../../ExchangeButton/exchangeButton';
+import Tabs from './Tabs'
 import ArrowRightSrc from '../../../images/arrow-right2.svg';
+import ArrowLeftIcon from '../../../images/arrow-left.svg';
+
 import { navigate } from 'gatsby-plugin-intl';
 
 const Amount = () => {
@@ -22,6 +26,7 @@ const Amount = () => {
   } = React.useContext(LiquidityContext);
 
   const walletConnected = false;
+  const intl = useIntl();
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -36,6 +41,7 @@ const Amount = () => {
     <StyledForm
       title='Add liqudity'
       submitHandler={submitHandler}>
+      <Tabs />
       <InputWrapper>
         <Label color='green'>You send</Label>
         <ExchangeInput
@@ -57,24 +63,58 @@ const Amount = () => {
             </>
         }
       </Rate>
+      <Buttons>
+      <PrevButton onClick={()=>null}>
+          <ArrowLeft src={ArrowLeftIcon} />
+          {intl.formatMessage({ id: 'back' })}
+        </PrevButton>
       <ExchangeButton type='submit'>
           {
             walletConnected
             ? 'Enter an amount'
             : <>
-              Connect wallet
+              Submit
               <ArrowRight src={ArrowRightSrc} />
             </>
           }
       </ExchangeButton>
+      </Buttons>
     </StyledForm>
   );
 };
+
+
+const Buttons = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+  button {
+    max-width: none;
+    margin-top: 20px;
+  }
+  @media screen and (min-width: 600px) {
+    flex-direction: row;
+    button {
+      margin-top: 0;
+      :first-of-type {
+        margin-right: 10px;
+      }
+      :last-of-type {
+        margin-left: 10px;
+      }
+    }
+  }
+`;
 
 const ArrowRight = styled.img`
     margin-left: 10px;
     margin-right: -5px;
 `;
+const ArrowLeft = styled.img`
+  margin-right: 5px;
+  margin-left: -5px;
+  `
 
 const StyledForm = styled(Form)`
   max-width: 464px;
@@ -94,6 +134,12 @@ const Label = styled.p`
     line-height: 10px;
     color: ${({ color }) => (color === 'green' ? '#1BB978' : '#EB5757' )}   ;
 `;
+const PrevButton = styled(ExchangeButton)`
+  background-color: transparent;
+  border: 1px solid #A2A7AE;
+  border-radius: 4px;
+`;
+
 
 const Rate = styled.p`
     margin: 20px 0 32px;

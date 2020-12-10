@@ -18,8 +18,8 @@ export default () => (
         animateHeader: true,
         links: ROOT_LINKS,
         buttons: (<>
-          <LiquidityMiningButton $style='blue' disabled />
-          <BuyTokenButton $style='green' />
+          <LiquidityMiningButton $style='blue' />
+          <BuyTokenButton $style='green'/>
         </>)
       }}>
       <MainBlock />
