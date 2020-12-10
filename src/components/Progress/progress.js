@@ -119,6 +119,7 @@ const Subtitle = styled.p`
   margin: 0;
   font-weight: normal;
   color: "inherit";
+  text-transform: capitalize;
   color: ${({ active }) => (active ? "#1BB978" : "#A2A7AE")};
 `
 

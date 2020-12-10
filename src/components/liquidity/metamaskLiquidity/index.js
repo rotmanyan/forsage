@@ -38,7 +38,7 @@ export const MetamaskLiquidity = ({ setMode }) => {
     setUserCurrency,
     targetCurrency,
     setTargetCurrency,
-    backClickHandler,
+    goToPaymentSelect: backClickHandler,
   }
   return (
     <Layout

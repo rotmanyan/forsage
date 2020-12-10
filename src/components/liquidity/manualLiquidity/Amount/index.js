@@ -82,7 +82,8 @@ export const Amount = ({ nextHandler, value }) => {
 
   const submitHandler = e => {
     e.preventDefault()
-    nextHandler()
+    // nextHandler()
+    console.log("nextHandler", nextHandler)
   }
 
   return (
