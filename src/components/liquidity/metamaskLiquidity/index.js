@@ -7,13 +7,13 @@ import { EXCHANGE_LINKS } from "../../../constants/links"
 import {
   METAMASK_PROGRESS,
   METAMASK_PROGRESS_TITLES,
-} from "../../../constants/progress"
+} from "../../../constants/liquidityMode"
 
 import Layout from "../../layout"
 import { AddLiquidityButton } from "../../Header/buttons"
 import ContentWrapper from "../../ContentWrapper/contentWrapper"
 import Progress from "../../Progress/progress"
-import Amount from "../../exchange/Amount/metamaskAmount"
+import { Amount } from "../manualLiquidity/Amount"
 
 import EmailIcon from "../../../images/support-email.svg"
 
@@ -31,6 +31,15 @@ export const MetamaskLiquidity = ({ setMode }) => {
 
   const backClickHandler = () => setMode(undefined)
 
+  const value = {
+    amount,
+    valueChangeHandler,
+    userCurrency,
+    setUserCurrency,
+    targetCurrency,
+    setTargetCurrency,
+    backClickHandler,
+  }
   return (
     <Layout
       hideFooter
@@ -49,15 +58,7 @@ export const MetamaskLiquidity = ({ setMode }) => {
             titles={METAMASK_PROGRESS_TITLES}
             step={METAMASK_PROGRESS.AMOUNT}
           />
-          {/*<Amount*/}
-          {/*  amount={amount}*/}
-          {/*  setAmount={valueChangeHandler}*/}
-          {/*  userCurrency={userCurrency}*/}
-          {/*  setUserCurrency={setUserCurrency}*/}
-          {/*  targetCurrency={targetCurrency}*/}
-          {/*  setTargetCurrency={setTargetCurrency}*/}
-          {/*  backClickHandler={backClickHandler}*/}
-          {/*/>*/}
+          <Amount value={value} />
         </ContentWrapper>
       </Container>
       <Email>

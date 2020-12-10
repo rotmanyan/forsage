@@ -1,12 +1,11 @@
 import React, { useState } from "react"
-import { useIntl, FormattedMessage } from "gatsby-plugin-intl"
+import { useIntl, FormattedMessage, navigate } from "gatsby-plugin-intl"
 
 import {
   Buttons,
   StyledForm,
   ArrowLeft,
   ArrowRight,
-  InputsContainer,
   InputWrapper,
   Label,
   PrevButton,
@@ -17,7 +16,6 @@ import {
   Tab__active,
 } from "./styles"
 
-import { LiquidityContext } from "../../../../contexts/liquidityContext"
 import useCurrencies from "../../../../hooks/useCurrencies"
 import { MANUAL_PROGRESS } from "../../../../constants/progress"
 
@@ -25,47 +23,70 @@ import ExchangeInput from "../../../ExchangeInput/exchangeInput"
 
 import ArrowSrc from "../../../../images/arrow-right2.svg"
 import ArrowLeftIcon from "../../../../images/arrow-left.svg"
+import ExchangeButton from "../../../ExchangeButton/exchangeButton"
+import ArrowRightSrc from "../../../../images/arrow-right2.svg"
+import { LiquidityContext } from "../../../../contexts/liquidityContext"
 
 export const Amount = ({ nextHandler, value }) => {
+  // const {
+  //   amount,
+  //   setAmount,
+  //   rValue,
+  //   setRvalue,
+  //   userCurrency,
+  //   setUserCurrency,
+  //   targetCurrency,
+  //   setTargetCurrency,
+  //   goToPaymentSelect,
+  // } = value
+  //
+  // const intl = useIntl()
+  // const {
+  //   loaded,
+  //   currencies: { USER_CURRENCIES },
+  // } = useCurrencies()
+  // const [isValid, setValidity] = useState(true)
+  //
+  // const amountChangeHandler = value => {
+  //   setValidity(true)
+  //   setAmount(value)
+  // }
+  //
+  // const rValueChangeHandler = value => {
+  //   setValidity(true)
+  //   setRvalue(value)
+  // }
+  //
+  // const submitHandler = e => {
+  //   e.preventDefault()
+  //   const valid = amount > 0
+  //   setValidity(valid)
+  //   if (valid) nextHandler(MANUAL_PROGRESS.ADDRESS)
+  // }
+
+  const {
+    currencies: { USER_CURRENCIES },
+  } = useCurrencies()
+
   const {
     amount,
     setAmount,
-    rValue,
-    setRvalue,
-    userCurrency,
     setUserCurrency,
-    targetCurrency,
-    setTargetCurrency,
+    userCurrency,
+    targetCurrency = {},
     goToPaymentSelect,
   } = value
 
+  const walletConnected = false
   const intl = useIntl()
-  const {
-    loaded,
-    currencies: { USER_CURRENCIES, CURRENCIES },
-  } = useCurrencies()
-  const [isValid, setValidity] = useState(true)
-
-  const amountChangeHandler = value => {
-    setValidity(true)
-    setAmount(value)
-  }
-
-  const rValueChangeHandler = value => {
-    setValidity(true)
-    setRvalue(value)
-  }
 
   const submitHandler = e => {
     e.preventDefault()
-    const valid = amount > 0
-    setValidity(valid)
-    if (valid) nextHandler(MANUAL_PROGRESS.ADDRESS)
+    nextHandler()
   }
 
   return (
     <StyledForm
-      submitHandler={submitHandler}
       title={
         <Tabs>
           <Tab__active>TESTING POOL</Tab__active>
@@ -77,32 +98,16 @@ export const Amount = ({ nextHandler, value }) => {
           <Tab>POOL 6</Tab>
         </Tabs>
       }
+      submitHandler={submitHandler}
     >
       <InputWrapper>
-        <Label color="red">
-          <FormattedMessage id="buy.amount.label1" />
-        </Label>
+        <Label color="green">You send</Label>
         <ExchangeInput
           amount={amount}
-          amountChangeHandler={amountChangeHandler}
+          amountChangeHandler={setAmount}
           currency={userCurrency}
           currencies={USER_CURRENCIES}
           currencyChangeHandler={setUserCurrency}
-          isValid={isValid}
-        />
-      </InputWrapper>
-      <InputWrapper>
-        <Label color="green">
-          <FormattedMessage id="buy.amount.label2" />
-        </Label>
-        <ExchangeInput
-          amount={rValue}
-          amountChangeHandler={rValueChangeHandler}
-          currency={targetCurrency}
-          currencies={CURRENCIES}
-          currencyChangeHandler={setTargetCurrency}
-          disabledInput={!userCurrency.rate}
-          disabledSelect
         />
       </InputWrapper>
       <RateContainer />
@@ -111,10 +116,16 @@ export const Amount = ({ nextHandler, value }) => {
           <ArrowLeft src={ArrowLeftIcon} />
           {intl.formatMessage({ id: "back" })}
         </PrevButton>
-        <StyledButton disabled={!loaded} type="submit">
-          {intl.formatMessage({ id: "buy" })}
-          <ArrowRight src={ArrowSrc} />
-        </StyledButton>
+        <ExchangeButton type="submit">
+          {walletConnected ? (
+            "Enter an amount"
+          ) : (
+            <>
+              Submit
+              <ArrowRight src={ArrowRightSrc} />
+            </>
+          )}
+        </ExchangeButton>
       </Buttons>
     </StyledForm>
   )

@@ -7,9 +7,11 @@ export const Buttons = styled.div`
   align-items: center;
   width: 100%;
   flex-direction: column;
+  justify-content: space-between;
   button {
     max-width: none;
     margin-top: 20px;
+    width: 150px;
   }
   @media screen and (min-width: 600px) {
     flex-direction: row;
@@ -71,17 +73,11 @@ export const StyledButton = styled(ExchangeButton)`
   }
 `
 
-export const InputsContainer = styled.div`
-  display: flex;
-  width: 100%;
-  box-sizing: border-box;
-  flex-direction: column;
-`
-
 export const InputWrapper = styled.div`
   padding: 10px;
   display: flex;
   flex-direction: column;
+  width: 100%;
 `
 
 export const Label = styled.p`
@@ -96,11 +92,10 @@ export const ArrowRight = styled.img`
 `
 
 export const Tabs = styled.ul`
-  width: 100%;
   margin: 0;
-  padding: 0;
+  padding: 0 60px;
+  justify-content: space-between;
   display: flex;
-  justify-content: space-evenly;
 `
 export const Tab = styled.li`
   margin: 0;
