@@ -1,0 +1,4 @@
+export const LIQUIDITY_MODE = {
+  MANUAL: 'MANUAL',
+  METAMASK: 'METAMASK',
+}

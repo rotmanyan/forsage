@@ -91,7 +91,7 @@ const PaymentSelect = ({ setMode, options }) => {
       }}>
       <Container>
         <ContentWrapper alignItems='center' column>
-          <Progress dots={[...Object.values(METAMASK_PROGRESS)]} titles={METAMASK_PROGRESS_TITLES} step={METAMASK_PROGRESS.METHOD} />
+          {/*<Progress dots={[...Object.values(METAMASK_PROGRESS)]} titles={METAMASK_PROGRESS_TITLES} step={METAMASK_PROGRESS.METHOD} />*/}
           <StyledForm title={intl.formatMessage({ id: 'buy.connect.title' })} submitHandler={submitHandler}>
             <InputWrapper>
               <WalletButton

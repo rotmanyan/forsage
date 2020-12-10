@@ -40,7 +40,7 @@ const MainBlock = () => {
                     <TimeWrapper><img src={TimerIcon} alt='' />{formatDate(timeLeft)}</TimeWrapper>
                 }
                 <ButtonWrapper>
-                    <Button onClick={ignoreLinkClick} to='/add_liquidity' >
+                    <Button to='/add_liquidity' >
                         <FormattedMessage id='liquidityMining' />
                     </Button>
                     <Button to='/buy' color='success'>
