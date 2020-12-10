@@ -78,44 +78,34 @@ export const Amount = ({ nextHandler, value }) => {
         </Tabs>
       }
     >
-      <InputsContainer>
-        <InputWrapper>
-          <Label color="red">
-            <FormattedMessage id="buy.amount.label1" />
-          </Label>
-          <ExchangeInput
-            amount={amount}
-            amountChangeHandler={amountChangeHandler}
-            currency={userCurrency}
-            currencies={USER_CURRENCIES}
-            currencyChangeHandler={setUserCurrency}
-            isValid={isValid}
-          />
-        </InputWrapper>
-        <InputWrapper>
-          <Label color="green">
-            <FormattedMessage id="buy.amount.label2" />
-          </Label>
-          <ExchangeInput
-            amount={rValue}
-            amountChangeHandler={rValueChangeHandler}
-            currency={targetCurrency}
-            currencies={CURRENCIES}
-            currencyChangeHandler={setTargetCurrency}
-            disabledInput={!userCurrency.rate}
-            disabledSelect
-          />
-        </InputWrapper>
-      </InputsContainer>
-      <RateContainer>
-        {userCurrency.rate && (
-          <>
-            <span>{+userCurrency.rate.toFixed(6)}</span>
-            {userCurrency.label} = <span> 1 </span>
-            {targetCurrency.label}
-          </>
-        )}
-      </RateContainer>
+      <InputWrapper>
+        <Label color="red">
+          <FormattedMessage id="buy.amount.label1" />
+        </Label>
+        <ExchangeInput
+          amount={amount}
+          amountChangeHandler={amountChangeHandler}
+          currency={userCurrency}
+          currencies={USER_CURRENCIES}
+          currencyChangeHandler={setUserCurrency}
+          isValid={isValid}
+        />
+      </InputWrapper>
+      <InputWrapper>
+        <Label color="green">
+          <FormattedMessage id="buy.amount.label2" />
+        </Label>
+        <ExchangeInput
+          amount={rValue}
+          amountChangeHandler={rValueChangeHandler}
+          currency={targetCurrency}
+          currencies={CURRENCIES}
+          currencyChangeHandler={setTargetCurrency}
+          disabledInput={!userCurrency.rate}
+          disabledSelect
+        />
+      </InputWrapper>
+      <RateContainer />
       <Buttons>
         <PrevButton onClick={goToPaymentSelect}>
           <ArrowLeft src={ArrowLeftIcon} />

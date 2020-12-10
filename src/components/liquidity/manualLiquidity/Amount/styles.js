@@ -52,7 +52,11 @@ export const RateContainer = styled.div`
 `
 
 export const StyledForm = styled(Form)`
-  max-width: 464px;
+  min-width: 660px;
+  max-width: 660px;
+  > div {
+    padding-top: 20px;
+  }
 `
 
 export const StyledButton = styled(ExchangeButton)`
@@ -94,9 +98,9 @@ export const ArrowRight = styled.img`
 export const Tabs = styled.ul`
   width: 100%;
   margin: 0;
-  padding: 0 70px;
+  padding: 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 `
 export const Tab = styled.li`
   margin: 0;
