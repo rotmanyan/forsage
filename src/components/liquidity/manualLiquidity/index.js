@@ -14,13 +14,13 @@ import useCurrencies from "../../../hooks/useCurrencies"
 import Layout from "../../layout"
 import Progress from "../../Progress/progress"
 import ContentWrapper from "../../ContentWrapper/contentWrapper"
+import { AddLiquidityButton } from "../../Header/buttons"
 
-import Amount from "../../exchange/Amount/manualAmount"
+import { Amount } from "./Amount"
 import Address from "../../exchange/Address/address"
 import Confirmation from "../../exchange/Confirmation/confirmation"
 import Deposit from "../../exchange/Deposit/deposit"
 import Info from "../../exchange/Info/info"
-import { AddLiquidityButton } from "../../Header/buttons"
 
 import EmailIcon from "../../../images/support-email.svg"
 
@@ -166,7 +166,8 @@ const ManualLiquidity = ({ setMode }) => {
   const goToPaymentSelect = () => setMode(undefined)
 
   const Page = Pages[progress]
-
+  // console.log("Page", Page)
+  // console.log("progress", progress)
   return (
     <Layout
       hideFooter
@@ -200,7 +201,21 @@ const ManualLiquidity = ({ setMode }) => {
               goToPaymentSelect,
             }}
           >
-            <Page nextHandler={nextHandler} />
+            <Page
+              nextHandler={nextHandler}
+              value={{
+                ...state,
+                setAmount: valueChangeHandler,
+                setRvalue: rValueChangeHandler,
+                setAddress: value => dispatch(setAddress(value)),
+                setEmail: value => dispatch(setEmail(value)),
+                setUserCurrency: value => dispatch(setUserCurrency(value)),
+                setTargetCurrency: value => dispatch(setTargetCurrency(value)),
+                setTransactionStatus: value =>
+                  dispatch(setTransactionStatus(value)),
+                goToPaymentSelect,
+              }}
+            />
           </PurchaseContext.Provider>
         </ContentWrapper>
       </Container>

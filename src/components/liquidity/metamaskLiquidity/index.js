@@ -49,15 +49,15 @@ export const MetamaskLiquidity = ({ setMode }) => {
             titles={METAMASK_PROGRESS_TITLES}
             step={METAMASK_PROGRESS.AMOUNT}
           />
-          <Amount
-            amount={amount}
-            setAmount={valueChangeHandler}
-            userCurrency={userCurrency}
-            setUserCurrency={setUserCurrency}
-            targetCurrency={targetCurrency}
-            setTargetCurrency={setTargetCurrency}
-            backClickHandler={backClickHandler}
-          />
+          {/*<Amount*/}
+          {/*  amount={amount}*/}
+          {/*  setAmount={valueChangeHandler}*/}
+          {/*  userCurrency={userCurrency}*/}
+          {/*  setUserCurrency={setUserCurrency}*/}
+          {/*  targetCurrency={targetCurrency}*/}
+          {/*  setTargetCurrency={setTargetCurrency}*/}
+          {/*  backClickHandler={backClickHandler}*/}
+          {/*/>*/}
         </ContentWrapper>
       </Container>
       <Email>
