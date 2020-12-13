@@ -26,6 +26,8 @@ import ArrowLeftIcon from "../../../../images/arrow-left.svg"
 import ExchangeButton from "../../../ExchangeButton/exchangeButton"
 import ArrowRightSrc from "../../../../images/arrow-right2.svg"
 import { LiquidityContext } from "../../../../contexts/liquidityContext"
+import PurchaseSucceed from "../../../exchange/Amount/purchaseSucceed"
+import { NOTIFIACATION } from "../../../../constants/ui"
 
 export const Amount = ({ nextHandler, value }) => {
   // const {
@@ -63,7 +65,9 @@ export const Amount = ({ nextHandler, value }) => {
   //   setValidity(valid)
   //   if (valid) nextHandler(MANUAL_PROGRESS.ADDRESS)
   // }
-
+  const [popup, setPopup] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const closePopUp = () => alert("close popup")
   const {
     currencies: { USER_CURRENCIES },
   } = useCurrencies()
@@ -84,6 +88,28 @@ export const Amount = ({ nextHandler, value }) => {
     e.preventDefault()
     // nextHandler()
     console.log("nextHandler", nextHandler)
+  }
+
+  const submitHandlerSec = async e => {
+    e.preventDefault()
+    if (!isValid) return
+
+    dispatch(setLoading(true))
+    const { denied, transactionInfo, error } = await tokenService
+      .buyTokens(amount)
+      .then(transactionInfo => ({ transactionInfo }))
+      .catch(e =>
+        e.code === 4001 // user denied transaction
+          ? { denied: true }
+          : { error: e }
+      )
+
+    if (isMounted) dispatch(setLoading(false))
+
+    if (denied || error) return
+
+    if (isMounted) dispatch(notifyUser(transactionInfo))
+    else setOpenedNotification(NOTIFIACATION.PURCHASE, transactionInfo)
   }
 
   return (
@@ -128,6 +154,11 @@ export const Amount = ({ nextHandler, value }) => {
           )}
         </ExchangeButton>
       </Buttons>
+      <PurchaseSucceed
+        isOpen={popup}
+        onClose={() => setPopup(false)}
+        transaction={undefined}
+      />
     </StyledForm>
   )
 }
