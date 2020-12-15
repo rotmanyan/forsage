@@ -78,6 +78,7 @@ export const Amount = ({ nextHandler, value }) => {
     setUserCurrency,
     userCurrency,
     targetCurrency = {},
+    amountChangeHandler,
     goToPaymentSelect,
   } = value
 
@@ -131,7 +132,7 @@ export const Amount = ({ nextHandler, value }) => {
         <Label color="green">You send</Label>
         <ExchangeInput
           amount={amount}
-          amountChangeHandler={setAmount}
+          amountChangeHandler={amountChangeHandler}
           currency={userCurrency}
           currencies={USER_CURRENCIES}
           currencyChangeHandler={setUserCurrency}

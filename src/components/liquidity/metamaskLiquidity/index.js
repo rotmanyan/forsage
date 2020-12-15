@@ -10,7 +10,7 @@ import {
 } from "../../../constants/liquidityMode"
 
 import Layout from "../../layout"
-import { AddLiquidityButton } from "../../Header/buttons"
+import { AddLiquidityButton, BuyTokenButton } from "../../Header/buttons"
 import ContentWrapper from "../../ContentWrapper/contentWrapper"
 import Progress from "../../Progress/progress"
 import { Amount } from "../manualLiquidity/Amount"
@@ -38,6 +38,7 @@ export const MetamaskLiquidity = ({ setMode }) => {
     setUserCurrency,
     targetCurrency,
     setTargetCurrency,
+    amountChangeHandler: setAmount,
     goToPaymentSelect: backClickHandler,
   }
   return (
@@ -48,7 +49,7 @@ export const MetamaskLiquidity = ({ setMode }) => {
         logo: "black",
         links: EXCHANGE_LINKS,
         showBalance: true,
-        buttons: <AddLiquidityButton $style="blue" />,
+        buttons: <BuyTokenButton $style='green'/>,
       }}
     >
       <Container>
