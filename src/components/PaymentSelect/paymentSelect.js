@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Web3 from 'web3';
 import { navigate, useIntl } from 'gatsby-plugin-intl';
 
-import { TokenService } from '../../vendors/TokenService';
+import {initMetamask,initTokenService} from '../../vendors/TokenService';
 import { PURCHASE_MODE } from '../../constants/purchaseMode';
 import { EXCHANGE_LINKS } from '../../constants/links';
 import { METAMASK_PROGRESS, METAMASK_PROGRESS_TITLES } from '../../constants/progress';
@@ -29,31 +29,31 @@ const PaymentSelect = ({ setMode, options }) => {
 
   const installMetamask = () => window.open('https://metamask.io/download.html');
 
-  const initMetamask = async () =>{ 
-    if (window.ethereum) {
-      const web3Instance = new Web3(window.ethereum);
-      const accounts = await window.ethereum.enable()
-        .catch(() => {
-          console.log('err')
-          return [];
-        });
+  // const initMetamask = async () =>{ 
+  //   if (window.ethereum) {
+  //     const web3Instance = new Web3(window.ethereum);
+  //     const accounts = await window.ethereum.enable()
+  //       .catch(() => {
+  //         console.log('err')
+  //         return [];
+  //       });
 
-      if (accounts.length) {
-        web3Instance.eth.defaultAccount =  accounts[0];
+  //     if (accounts.length) {
+  //       web3Instance.eth.defaultAccount =  accounts[0];
 
-        window.w = web3Instance;
+  //       window.w = web3Instance;
 
-        const newTokenService = new TokenService(web3Instance);
-        setTokenService(newTokenService);
-        return true;
-      } else {
-        // show message to user 'please enable...'
-      }
-    } else {
-      //   alert("Please install an Ethereum-compatible browser or extension like MetaMask to use this dApp!");
-    }
-    return false;
-  }
+  //       const newTokenService = new TokenService(web3Instance);
+  //       setTokenService(newTokenService);
+  //       return true;
+  //     } else {
+  //       // show message to user 'please enable...'
+  //     }
+  //   } else {
+  //     //   alert("Please install an Ethereum-compatible browser or extension like MetaMask to use this dApp!");
+  //   }
+  //   return false;
+  // }
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -71,6 +71,11 @@ const PaymentSelect = ({ setMode, options }) => {
         installMetamask();
       }
     }
+  const initialized = initMetamask();
+    
+    initialized
+      .then(data=>initTokenService(data))
+      .catch(error=>console.log(error))
   }
 
   const backClickHandler = () => window.history.back();

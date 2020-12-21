@@ -1,10 +1,10 @@
-window.addEventListener('load', async() => {
-    initMetamask().then((web3)=>{
-        initTokenService(web3);
-    });
-});
+// window.addEventListener('DOMContentLoaded', async() => {
+//     initMetamask().then((web3)=>{
+//         initTokenService(web3);
+//     });
+// });
 
-function initTokenService(_web3){
+export function initTokenService(_web3){
     return new Promise(async(resolve,reject)=>{
         try{
             /* START*/
@@ -44,7 +44,7 @@ function initTokenService(_web3){
 
             main.listenTokenBoughtEvents(callback);
 
-            return resolve(true);
+            return resolve(main);
             /* END */
         }catch(e){
             alert(e)
@@ -54,7 +54,7 @@ function initTokenService(_web3){
 }
 
 
-function initMetamask(){
+export function initMetamask(){
     return new Promise(async(resolve,reject)=>{
         try{
             if(typeof window.web3 === 'undefined') {
@@ -67,6 +67,7 @@ function initMetamask(){
             }else{
                 const Web3 = window.Web3;
                 const web3Instance = new Web3(window.web3.currentProvider);
+                console.log(web3Instance);
                 const accounts = await web3Instance.eth.getAccounts();
 
                 if (accounts.length) {
@@ -96,8 +97,8 @@ const tokenAbi=[{"anonymous":false,"inputs":[{"indexed":true,"internalType":"add
 
 const saleAddress='0x39A8603f2498bb6b10E071613a6EF234Eb36F87e';
 const saleAbi=[{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"_sender","type":"address"},{"indexed":false,"internalType":"bytes3","name":"_currency","type":"bytes3"},{"indexed":false,"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"DepositEvent","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"_buyer","type":"address"},{"indexed":false,"internalType":"uint256","name":"_currencyAmount","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"_tokensAmount","type":"uint256"}],"name":"TokensBought","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"_sender","type":"address"},{"indexed":false,"internalType":"bytes3","name":"_currency","type":"bytes3"},{"indexed":false,"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"WithdrawEvent","type":"event"},{"inputs":[],"name":"buyTokens","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"depositEth","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"depositToken","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"destroy","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"refillEtherBalance","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"address","name":"_token","type":"address"}],"name":"setToken","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_newFee","type":"uint256"}],"name":"setWithdrawalFee","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address payable","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"sender","type":"address"},{"internalType":"uint256","name":"_sentCurrency","type":"uint256"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transferTokens","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_index","type":"uint256"}],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"withdrawEther","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"withdrawTokens","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_token","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[{"internalType":"uint256","name":"_currencyAmount","type":"uint256"}],"name":"calculatePurchaseAmount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_sender","type":"address"},{"internalType":"uint256","name":"_index","type":"uint256"}],"name":"getDeposit","outputs":[{"components":[{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"bytes3","name":"currency","type":"bytes3"},{"internalType":"uint256","name":"timestamp","type":"uint256"}],"internalType":"struct LiquiditySale.Deposit","name":"","type":"tuple"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_sender","type":"address"}],"name":"getDeposits","outputs":[{"components":[{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"bytes3","name":"currency","type":"bytes3"},{"internalType":"uint256","name":"timestamp","type":"uint256"}],"internalType":"struct LiquiditySale.Deposit[]","name":"","type":"tuple[]"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"getRate","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getSaleEtherBalance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getSaleTokenBalance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getToken","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getTokenDecimals","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getWithdrawalFee","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address payable","name":"","type":"address"}],"stateMutability":"view","type":"function"}];
-
-class TokenService{
+ 
+export class TokenService{
     constructor(web3){
         this.web3=web3;
         this.contracts={};

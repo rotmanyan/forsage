@@ -18,6 +18,7 @@ import {
 
 import useCurrencies from "../../../../hooks/useCurrencies"
 import { MANUAL_PROGRESS } from "../../../../constants/progress"
+import {initTokenService, initMetamask} from "../../../../vendors/TokenService"
 
 import ExchangeInput from "../../../ExchangeInput/exchangeInput"
 
@@ -28,6 +29,7 @@ import ArrowRightSrc from "../../../../images/arrow-right2.svg"
 import { LiquidityContext } from "../../../../contexts/liquidityContext"
 import PurchaseSucceed from "../../../exchange/Amount/purchaseSucceed"
 import { NOTIFIACATION } from "../../../../constants/ui"
+
 
 export const Amount = ({ nextHandler, value }) => {
   // const {
@@ -84,11 +86,20 @@ export const Amount = ({ nextHandler, value }) => {
 
   const walletConnected = false
   const intl = useIntl()
-
+  const initialized = initMetamask();
+  // const iTS = initTokenService()
   const submitHandler = e => {
     e.preventDefault()
-    // nextHandler()
-    console.log("nextHandler", nextHandler)
+    
+    initialized
+    .then(data=>{
+      initTokenService(data)
+      .then(main => main.addLiquidity(amount)
+      .then(hash=>console.log('hash',hash))
+      )
+      
+    })
+    .catch(error=>console.log(error))
   }
 
   const submitHandlerSec = async e => {

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { navigate, FormattedMessage } from 'gatsby-plugin-intl';
+import initMetamask from '../../vendors/TokenService'
 import ArrowRightSrc from '../../images/arrow-right2.svg';
 
 export const AddLiquidityButton = (props) => {

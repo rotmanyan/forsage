@@ -164,7 +164,6 @@ const Amount = ({
       <InputsContainer>
         <InputWrapper>
           <Label color="red">
-            123123
             <FormattedMessage id="buy.amount.label1" />
           </Label>
           <ExchangeInput
